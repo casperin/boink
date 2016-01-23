@@ -137,6 +137,17 @@ git clone https://github.com/casperin/boink.git
 ```
 
 
+## Test
+
+```
+npm test
+```
+
+This should do it for you. Notice, that though `boink.js` itself is not
+dependent on other modules/libraries, the tests are. Make sure you ran `npm
+install` before `npm test`.
+
+
 ## License
 
 MIT of course.

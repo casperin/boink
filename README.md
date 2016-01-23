@@ -92,7 +92,8 @@ import {enter, exit} from './boink';
 import {int, bool} from './type';
 import {PersonType} from './customTypes';
 
-// Applying
+// Applying -- Can also be done in one line with
+// `boink(int, TypePerson)(int)(hasAge)`
 hasAge = enter(int, TypePerson)(hasAge);
 hasAge = exit(bool)(hasAge);
 function hasAge (age, person) {
@@ -107,9 +108,11 @@ hasAge(2, {name: 'Bob'}) // Throws 'A person must have an age'
 
 ## Api / Documentation
 
-`boink.js` contains only `enter` and `exit`, checking arguments coming into a
-wrapped function, and the value coming out. `enter` also checks that arity is
-correct when calling the function.
+### Function wrappers
+
+`boink.js` contains only `enter` and `exit` (and `boink` as a combination of the
+two), checking arguments coming into a wrapped function, and the value coming
+out. `enter` also checks that arity is correct when calling the function.
 
 ```js
 enter(type1, type2, ...)(fn);
@@ -122,6 +125,13 @@ exit(type)(fn);
 // Only takes a single `type` because functions in JavaScript only can return a
 // single function.
 ```
+
+```js
+boink(type1, type2, ...)(type)(fn);
+// A combination of the two above.
+```
+
+### Types
 
 `type.js` exposes several functions that will check a certain value for its
 type. The functions will not throw errors themselves, but rather return a `new

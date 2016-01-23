@@ -93,7 +93,7 @@ import {int, bool} from './type';
 import {PersonType} from './customTypes';
 
 // Applying -- Can also be done in one line with
-// `boink(int, TypePerson)(int)(hasAge)`
+// `boink(int, TypePerson)(bool)(hasAge)`
 hasAge = enter(int, TypePerson)(hasAge);
 hasAge = exit(bool)(hasAge);
 function hasAge (age, person) {

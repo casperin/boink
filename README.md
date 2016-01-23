@@ -75,9 +75,9 @@ I mostly use custom types personally.
  * customTypes.js
  */
 export const PersonType = x => {
-  if (typeof x !== 'object')      return new Error('A person is always an object');
+  if (typeof x      !== 'object') return new Error('A person is always an object');
   if (typeof x.name !== 'string') return new Error('A person must have a name');
-  if (typeof x.age !== 'number')  return new Error('A person must have an age');
+  if (typeof x.age  !== 'number') return new Error('A person must have an age');
 };
 
 // ...

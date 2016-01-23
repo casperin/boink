@@ -20,6 +20,10 @@ Pragmatic custom "type checking".
 The module consists of two separate parts: `boink.js` and `type.js` with no
 connection between them.
 
+It is built to being opened up and edited to your needs. For instance, at the
+top of `boink.js`, there's an `ACTIVE` constant, that probably (for performance
+reasons) should be set to false in production.
+
 In `boink.js` you will find `enter` and `exit` which are both function wrappers,
 checking the types of the applied function's entrance (`enter`) and exit
 (`exit`) variabels.
@@ -50,7 +54,7 @@ I mostly use custom types personally.
 /**
  * customTypes.js
  */
-export const Person = x => {
+export const PersonType = x => {
   if (typeof x !== 'object')
     return new Error('A person is always an object');
   if (typeof x.name !== 'string')
@@ -66,7 +70,7 @@ export const Person = x => {
  */
 import {enter, exit} from './boink';
 import {int, bool} from './type';
-import {Person} from './customTypes';
+import {PersonType} from './customTypes';
 
 // Applying
 hasAge = enter(hasAge, int, TypePerson);
@@ -106,17 +110,33 @@ Error('...');` that can then be thrown (by `boink.js` or `react` if used as a
 
 ```js
 // Currently exposed type checkers. Hopefully they are self explanatory.
-Type.bool;
-Type.string;
-Type.number;
-Type.array;
-Type.object;
-Type.int;
-Type.arrayOf(type); // E.g., Type.arrayOf(Type.int)
+Type.bool
+Type.string
+Type.number
+Type.array
+Type.object
+Type.int
+Type.arrayOf(type) // E.g., Type.arrayOf(Type.int)
 ```
+
 
 ## React
 
 The Api here, is meant to be compatible with `PropTypes` from `react`. That
 means you can use your custom types both with `boink.js` and `react`.
 
+
+## Installation
+
+You might actually not want to use `npm` for this. If you are using `babel` with
+the `es2015` preset, then just `git clone` the project somewhere in your `src`
+directory (or wherever) and edit and import the files as you need them.
+
+```
+git clone https://github.com/casperin/boink.git
+```
+
+
+## License
+
+MIT of course.

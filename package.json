@@ -1,4 +1,5 @@
 {
+  "main": "boink.js",
   "scripts": {
     "test": "babel-tape-runner test/index.js | faucet"
   },

@@ -42,7 +42,7 @@ sub = exit(int)(sub);
 // promised), an `int`.
 
 let mul = (x, y) => x * y;
-add = boink(int, int)(int)(add);
+mul = boink(int, int)(int)(mul);
 // `mul` is now a function that checks that both its arguments are `int`, and
 // that its return value is also an `int`.
 ```

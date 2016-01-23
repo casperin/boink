@@ -74,7 +74,7 @@ import {PersonType} from './customTypes';
 
 // Applying
 hasAge = enter(int, TypePerson)(hasAge);
-hasAge = exit(bool}(hasAge);
+hasAge = exit(bool)(hasAge);
 function hasAge (age, person) {
   return person.age === age;
 }

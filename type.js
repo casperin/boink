@@ -31,3 +31,5 @@ export const int = x => {
 export const arrayOf = type => xs => {
   xs.forEach(type);
 }
+
+export default {bool, string, number, array, object, int, arrayOf}

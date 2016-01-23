@@ -13,7 +13,7 @@
 
 ```
 
-# Boink
+# BOINK
 
 Pragmatic custom "type checking".
 
@@ -24,15 +24,35 @@ It is built to being opened up and edited to your needs. For instance, at the
 top of `boink.js`, there's an `ACTIVE` constant, that probably (for performance
 reasons) should be set to false in production.
 
-In `boink.js` you will find `enter` and `exit` which are both function wrappers,
-checking the types of the applied function's entrance (`enter`) and exit
-(`exit`) variabels.
+In `boink.js` you will find `enter`, `exit`, and `boink` which are both function
+wrappers, checking the types of the applied function's entrance (`enter`) and
+exit (`exit`) variabels. `boink` checks both.
 
 ## Usage
 
 ```js
+let add = (x, y) => x + y;
+add = enter(int, int)(add);
+// `add` is now a function that checks if it has two arguments (when called)
+// that are both `int`.
+
+let sub = (x, y) => x - y;
+sub = exit(int)(sub);
+// `sub` is now a function that checks if its return value is indeed (as
+// promised), an `int`.
+
+let mul = (x, y) => x * y;
+add = boink(int, int)(int)(add);
+// `mul` is now a function that checks that both its arguments are `int`, and
+// that its return value is also an `int`.
+```
+
+If a contract is not honored, by default boink throws an error; but check
+`boink.js` for more options.
+
+```js
 import {enter} from './boink';
-import * as Type from './type';
+import Type from './type';
 
 hasLength = enter(Type.int, Type.string)(hasLength);
 function hasLength (n, str) {

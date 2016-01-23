@@ -1,5 +1,5 @@
-import {enter, exit} from '../boink';
-import * as Type from '../type';
+import {enter, exit, boink} from '../boink';
+import Type from '../type';
 import tape from 'tape';
 
 tape('Basic exit', t => {
@@ -21,6 +21,18 @@ tape('Basic enter', t => {
   const b = enter(Type.object, Type.number)(fn);
   t.throws(() => b('foo', 42), null,
            'Does throw when parameters does not fit the type signatrue');
+
+  t.end();
+});
+
+tape('Basic boink', t => {
+  const fn = (str, n) => str.length === n;
+  const a = boink(Type.string, Type.number)(Type.bool)(fn);
+  t.doesNotThrow(() => a('foo', 42), null,
+                 'Boink doesn\'t throw when given correct parameters');
+
+  t.throws(() => a('foo', 'bar'), null,
+           'Boink does throw when parameters does not fit the type signatrue');
 
   t.end();
 });

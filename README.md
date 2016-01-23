@@ -34,16 +34,16 @@ checking the types of the applied function's entrance (`enter`) and exit
 import {enter} from './boink';
 import * as Type from './type';
 
-isLength = enter(Type.int, Type.string)(isLength);
-function isLength (n, str) {
+hasLength = enter(Type.int, Type.string)(hasLength);
+function hasLength (n, str) {
   return str.length === n;
 }
 
 // All good, we get our value (true)
-isLength(3, 'foo');
+hasLength(3, 'foo');
 
 // Not so good. This will throw an error
-isLength(3.5, 'foo');
+hasLength(3.5, 'foo');
 ```
 
 ### Custom types

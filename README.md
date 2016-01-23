@@ -34,7 +34,7 @@ checking the types of the applied function's entrance (`enter`) and exit
 import {enter} from './boink';
 import * as Type from './type';
 
-isLength = enter(isLength, Type.int, Type.string);
+isLength = enter(Type.int, Type.string)(isLength);
 function isLength (n, str) {
   return str.length === n;
 }
@@ -73,8 +73,8 @@ import {int, bool} from './type';
 import {PersonType} from './customTypes';
 
 // Applying
-hasAge = enter(hasAge, int, TypePerson);
-hasAge = exit(hasAge, bool};
+hasAge = enter(int, TypePerson)(hasAge);
+hasAge = exit(bool}(hasAge);
 function hasAge (age, person) {
   return person.age === age;
 }
@@ -92,13 +92,13 @@ wrapped function, and the value coming out. `enter` also checks that arity is
 correct when calling the function.
 
 ```js
-enter(fn, ...types);
+enter(type1, type2, ...)(fn);
 // `types` here, refers to functions that will return an error if the argument
 // that is being check is not correct.
 ```
 
 ```js
-exit(fn, type);
+exit(type)(fn);
 // Only takes a single `type` because functions in JavaScript only can return a
 // single function.
 ```

@@ -12,7 +12,7 @@ const check = (type, value) => {
   return value;
 }
 
-export const enter = (fn, ...types) => (...args) => {
+export const enter = (...types) => fn => (...args) => {
   if (!ACTIVE) return fn(...args);
   if (types.length !== args.length) {
     throw new Error('Types and Arguments length does not match');
@@ -22,7 +22,7 @@ export const enter = (fn, ...types) => (...args) => {
   return fn(...args);
 };
 
-export const exit = (fn, type) => (...a) => ACTIVE
+export const exit = type => fn => (...a) => ACTIVE
   ? check(type, fn(...a))
   : fn(...a);
 
